@@ -1,0 +1,14 @@
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+    methods: GET
+
+api_calc_get:
+    path: /api/calculator
+    defaults: { _controller: App\Controller\ApiCalculatorController::index }
+    methods: GET
+
+api_calc_calculate_get:
+    path: /api/calculator/{method}/{param1}/{param2}
+    defaults: { _controller: App\Controller\ApiCalculatorController::calculate }
+    methods: GET

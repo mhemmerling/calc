@@ -1,0 +1,24 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: true
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
+    App\Service\Calculator\CalculatorService:
+        ~
+
+    App\Controller\ApiCalculatorController:
+        arguments:
+            $calculatorService: '@App\Service\Calculator\CalculatorService'
+        calls:
+            - [setContainer, ['@service_container']]
